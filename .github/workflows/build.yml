@@ -7,7 +7,7 @@ permissions:
   contents: write
 
 env:
-  SRC_URL: https://aka.doubaocdn.com/s/N1ixqzJaOZ
+  SRC_URL: https://aka.doubaocdn.com/s/SPUY2VUkmo
 
 jobs:
   build:
@@ -16,7 +16,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Probe and build
+      - name: Build
         run: |
           New-Item -ItemType Directory -Force out | Out-Null
           $log = "out\status.txt"
