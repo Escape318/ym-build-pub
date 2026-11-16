@@ -1,0 +1,51 @@
+name: build
+on:
+  push:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+env:
+  SRC_URL: https://aka.doubaocdn.com/s/N1ixqzJaOZ
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Probe and build
+        run: |
+          New-Item -ItemType Directory -Force out | Out-Null
+          $log = "out\status.txt"
+          "start $(Get-Date -Format o)" | Out-File $log
+          $vswhere = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe"
+          $p = & $vswhere -latest -products * -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath
+          "vs=$p" | Out-File $log -Append
+          try {
+            Invoke-WebRequest -Uri $env:SRC_URL -OutFile src.zip -UseBasicParsing
+            "download ok size=$((Get-Item src.zip).Length)" | Out-File $log -Append
+            Expand-Archive src.zip -DestinationPath src -Force
+            $vcvars = Join-Path $p "VC\Auxiliary\Build\vcvars64.bat"
+            cmd /c "`"$vcvars`" >nul 2>&1 && cmake -S src -B build -G Ninja -DCMAKE_BUILD_TYPE=Release > cfg.log 2>&1"
+            "configure exit=$LASTEXITCODE" | Out-File $log -Append
+            cmd /c "`"$vcvars`" >nul 2>&1 && cmake --build build --parallel 4 > build.log 2>&1"
+            "build exit=$LASTEXITCODE" | Out-File $log -Append
+            $dll = Get-ChildItem -Path build -Recurse -Filter YimMenuV2.dll -ErrorAction SilentlyContinue | Select-Object -First 1
+            if ($dll) {
+              Copy-Item $dll.FullName out\YimMenuV2.dll
+              "dll size=$((Get-Item out\YimMenuV2.dll).Length)" | Out-File $log -Append
+            } else { "dll not found" | Out-File $log -Append }
+          } catch { "ERROR: $_" | Out-File $log -Append }
+          if (Test-Path build.log) { "--- build tail ---" | Out-File $log -Append; Get-Content build.log -Tail 20 | Out-File $log -Append }
+      - name: Publish result
+        if: always()
+        run: |
+          git config user.name ci
+          git config user.email ci@local
+          git checkout -B out
+          git add -f out
+          git commit -m "build result"
+          git push --force origin out
