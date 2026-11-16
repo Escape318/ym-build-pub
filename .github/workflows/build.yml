@@ -7,7 +7,7 @@ permissions:
   contents: write
 
 env:
-  SRC_URL: https://aka.doubaocdn.com/s/SPUY2VUkmo
+  SRC_URL: https://aka.doubaocdn.com/s/OBXF5YKUNA
 
 jobs:
   build:
@@ -39,7 +39,7 @@ jobs:
               "dll size=$((Get-Item out\YimMenuV2.dll).Length)" | Out-File $log -Append
             } else { "dll not found" | Out-File $log -Append }
           } catch { "ERROR: $_" | Out-File $log -Append }
-          if (Test-Path build.log) { "--- build tail ---" | Out-File $log -Append; Get-Content build.log -Tail 20 | Out-File $log -Append }
+          if (Test-Path build.log) { "--- build tail ---" | Out-File $log -Append; Get-Content build.log -Tail 25 | Out-File $log -Append }
       - name: Publish result
         if: always()
         run: |
