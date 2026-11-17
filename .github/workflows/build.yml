@@ -7,7 +7,7 @@ permissions:
   contents: write
 
 env:
-  SRC_URL: https://aka.doubaocdn.com/s/kYfovMha4O
+  SRC_URL: https://aka.doubaocdn.com/s/yENw8xrGBi
 
 jobs:
   build:
