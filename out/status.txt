@@ -1,0 +1,32 @@
+start 2026-11-17T05:28:28.4494413+00:00
+vs=C:\Program Files\Microsoft Visual Studio\18\Enterprise
+download ok size=2639983
+configure exit=0
+build exit=0
+dll size=6038016
+--- build tail ---
+[435/459] Building CXX object CMakeFiles\YimMenuV2.dir\src\game\pointers\Pointers.cpp.obj
+[436/459] Building CXX object CMakeFiles\YimMenuV2.dir\src\game\scripting\libraries\Network.cpp.obj
+[437/459] Building CXX object CMakeFiles\YimMenuV2.dir\src\game\scripting\libraries\Scripts.cpp.obj
+[438/459] Building CXX object CMakeFiles\YimMenuV2.dir\src\game\scripting\libraries\Stats.cpp.obj
+[439/459] Building CXX object CMakeFiles\YimMenuV2.dir\src\game\scripting\libraries\Tunables.cpp.obj
+[440/459] Building CXX object CMakeFiles\YimMenuV2.dir\src\game\scripting\libraries\Vehicle.cpp.obj
+[441/459] Building CXX object CMakeFiles\YimMenuV2.dir\src\types\network\netGameEvent.cpp.obj
+[442/459] Building CXX object CMakeFiles\YimMenuV2.dir\src\types\network\rlGamerHandle.cpp.obj
+[443/459] Building CXX object CMakeFiles\YimMenuV2.dir\src\types\script\CGameScriptId.cpp.obj
+[444/459] Building CXX object CMakeFiles\YimMenuV2.dir\src\main.cpp.obj
+[445/459] Building CXX object CMakeFiles\YimMenuV2.dir\src\game\scripting\libraries\Transactions.cpp.obj
+[446/459] Building CXX object CMakeFiles\YimMenuV2.dir\src\types\script\globals\Globals.cpp.obj
+[447/459] Building CXX object CMakeFiles\YimMenuV2.dir\src\types\script\locals\Locals.cpp.obj
+[448/459] Building CXX object CMakeFiles\YimMenuV2.dir\src\types\script\scrThread.cpp.obj
+[449/459] Building CXX object CMakeFiles\YimMenuV2.dir\src\types\stats\CStatsMgr.cpp.obj
+[450/459] Building CXX object CMakeFiles\YimMenuV2.dir\src\types\stats\CStatsMpCharacterMappingData.cpp.obj
+[451/459] Linking CXX static library _deps\asynclogger-build\AsyncLogger.lib
+[452/459] Linking C static library _deps\minhook-build\minhook.x64.lib
+[453/459] Building CXX object CMakeFiles\YimMenuV2.dir\src\types\script\ScriptEvent.cpp.obj
+[454/459] Linking C static library _deps\luajit-build\src\luajit.lib
+[455/459] Building C object _deps\luajit-build\src\CMakeFiles\luajit.dir\luajit.c.obj
+[456/459] Linking C executable _deps\luajit-build\src\luajit.exe
+[457/459] Building CXX object CMakeFiles\YimMenuV2.dir\src\types\script\Timer.cpp.obj
+[458/459] Building CXX object CMakeFiles\YimMenuV2.dir\src\game\gta\Nodes.cpp.obj
+[459/459] Linking CXX shared module YimMenuV2.dll
